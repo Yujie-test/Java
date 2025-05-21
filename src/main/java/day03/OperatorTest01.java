@@ -63,7 +63,7 @@ public class OperatorTest01 {
 
 		int s = 100;
 		System.out.println(++s); // 101
-		System.out.println(e); // 101
+		System.out.println(s); // 101
 	}
 }
 
