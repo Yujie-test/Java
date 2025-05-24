@@ -64,6 +64,56 @@ package chapter06;
 */
 public class IfTest01 {
 	public static void main(String[] args){
+		// 定义一个布尔类型的变量，表示性别
+		boolean sex = true;
+		// 业务：当sex为true时表示男，为false时表示女
+/*		if(sex == true){ // == 是关系运算符，不是赋值运算符，== 双等号是用来判断是否相等
+			System.out.println("Male");
+		}else {
+			System.out.println("Female");
+		}*/
+		// 改良
+		if(sex){
+			System.out.println("male");
+		}else {
+			System.out.println("female");
+		}
+		// 可以再进一步改良
+		// 可以使用三目运算符
+		sex = false;
+		System.out.println(sex ? "male" : "female");
+
+		// 代码可以这样写吗
+		// () 小括号当中最终取的值是sex变量的值
+		// 而sex是布尔类型，所以这个可以通过
+		if(sex = true){ // 以前sex不管是true还是false，走到这一行，sex一定是true
+			System.out.println("Male"); // 输出“Male”
+		}else {
+			// 虽然这种语法可以，但会导致else分支永远不能执行
+			System.out.println("Female");
+		}
+
+		int i = 100;
+		if (i == 100){
+			System.out.println("i = 100");
+		}
+		// 错误：不兼容的类型，int无法转换为boolean
+		/*if (i = 100){ // (i = 100)整体执行完之后是一个int类型，不是布尔类型
+			System.out.println("i = 100");
+		}*/
+
+		// 当分支中只有一条java语句的话，大括号可以省略
+		if(sex)
+			System.out.println("male");
+		else
+			System.out.println("female");
+
+		// 判断以下程序会出现问题吗？会出什么问题？第几行代码报错
+		/*if (sex)
+			System.out.println("Male");
+		    System.out.println("Hello World"); // 以上这三行代码没有问题，合乎语法
+		else // 这一行编译报错，因为else缺少if
+		    System.out.println("Female");*/
 
 	}
 }
