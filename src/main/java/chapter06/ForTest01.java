@@ -12,7 +12,7 @@ package chapter06;
 			对应到程序当中，如果有一块代码需要重复执行，此时为了减少代码量，我们使用循环语句
 
 */
-// 演示以下，为什么要使用循环
+// 演示一下，为什么要使用循环
 // 循环语句的出现就是为了解决代码的复用性
 public class ForTest01 {
 	public static void main(String[] args) {
