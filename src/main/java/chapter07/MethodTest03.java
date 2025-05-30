@@ -81,6 +81,11 @@ public class MethodTest03 {
 		// 注意：实参和形参必须一一对应，类型要对应，个数要对应
 		MethodTest03.divide(200,2);
 
+		byte b1 = 10;
+		byte b2 = 20;
+		int res = MethodTest03.sum(b1, b2);
+		System.out.println(res);
+
 		// 调用sum方法
 		//怎么取接收这个方法的返回值
 		// 使用变量来接受这个方法的返回值
