@@ -42,7 +42,6 @@ public class RecursionTest02 {
     // 递归方式
     public static int recursionSum(int n) {
         if (n == 1) {
-            System.out.println();
             return 1;
         }
         // 程序能执行到此处说明n不是1

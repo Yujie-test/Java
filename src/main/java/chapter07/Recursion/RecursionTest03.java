@@ -1,51 +1,35 @@
 package chapter07.Recursion;
 
 /*
-
+    1、使用递归的方式计算n的阶乘
+    2、使用for循环的方式实现一个
 */
 
-// 使用递归的方式计算n的阶乘
-// 使用for循环的方式实现一个
 public class RecursionTest03 {
     public static void main(String[] args) {
-        int res = sum(10);
+        int res = factorial(3);
         System.out.println(res);
 
-        recursionSum2(1, 10, 0);
-        System.out.println("----------------------------------------------------");
-
         // 调用标准递归方法
-        int r = recursionSum(10);
+        int r = recursionFactorial(3);
         System.out.println(r);
-
     }
 
     // for循环方式
-    public static int sum(int n) {
-        int sum = 0;
-        for (int i = 1; i <= n; i++) {
-            sum += i;
+    public static int factorial(int n) {
+        int res = 1;
+        for (int i = 2; i <= n; i++) {
+            res *= i;
         }
-        return sum;
-    }
-
-    // 递归方式——自己写的
-    public static void recursionSum2(int i, int n, int sum) {
-        sum += i;
-        if (i == n) {
-            System.out.println(sum);
-            return;
-        }
-        recursionSum2(++i, n, sum);
+        return res;
     }
 
     // 递归方式
-    public static int recursionSum(int n) {
+    public static int recursionFactorial(int n) {
         if (n == 1) {
-            System.out.println();
             return 1;
         }
         // 程序能执行到此处说明n不是1
-        return n + recursionSum(n-1);
+        return n * recursionFactorial(n-1);
     }
 }
