@@ -19,11 +19,40 @@ public class StudentTest {
 
 		// 创建学生对象s1
 		// s1属于局部变量吗？是
+		// s1这个局部变量叫做引用
 		Student s1 = new Student();
+		// 怎么访问实例变量
+		// 语法：引用.实例变量名
+		System.out.println(s1.id);
+		System.out.println(s1.sex);
+		System.out.println(s1.age);
+		System.out.println(s1.name);
+		System.out.println(s1.address);
+
+		System.out.println("---------------------------------------");
 
 		// 创建学生对象s2
 		// s2也属于局部变量
+		// s1也叫做引用
 		Student s2 = new Student();
+		System.out.println(s2.id);
+		System.out.println(s2.sex);
+		System.out.println(s2.age);
+		System.out.println(s2.name);
+		System.out.println(s2.address);
+		System.out.println("---------------------------------------");
+
+		// 程序执行到此处 我能修改s1这个学生的学号吗
+		s1.id = 110;
+		s1.name = "张三";
+		s1.age = 20;
+		s1.sex = true;
+		s1.address = "深圳保安区";
+		System.out.println(s1.id);
+		System.out.println(s1.sex);
+		System.out.println(s1.age);
+		System.out.println(s1.name);
+		System.out.println(s1.address);
 
 		// 再创建一个
 		Student s3 = new Student();
