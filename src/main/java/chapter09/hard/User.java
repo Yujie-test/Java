@@ -1,11 +1,11 @@
 package chapter09.hard;
 
 /*
-	User类：用户类
-
 */
 
 public class User {
+	// 类=属性+方法
+	// 以下3个都是属性，都是实例变量（对象变量）
 
 	// 用户名id
 	// int是一种基本数据类型

@@ -1,7 +1,7 @@
 package chapter09.hard;
 
 /*
-	对象的创建和使用
+	绘制内存图
 */
 
 public class Test {
@@ -27,6 +27,11 @@ public class Test {
 		System.out.println(u.addr.city);
 		System.out.println(u.addr.street);
 		System.out.println(u.addr.zipcode);
+
+		// ----------------是否理解以下代码-----------------------------
+		int x = 100;
+		// =代表赋值运算，“赋值”中有一个“值”
+		int y = x;
 	}
 }
 
