@@ -8,6 +8,8 @@ package chapter09;
 		当一个java对象没有任何引用指向该对象的时候，
 		GC会考虑将该垃圾数据释放回收掉。
 
+	出现空指针异常的前提条件是？
+		“空引用”访问实例相关[对象相关]的数据时，都会出现空指针异常
 */
 
 public class NullPointerTest {
