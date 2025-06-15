@@ -7,7 +7,7 @@ package chapter10;
 public class PersonTest {
 	public static void main(String[] args) {
 		// 创建Person对象
-		Person p = new Person();
+		Person01 p = new Person01();
 
 		// 访问人的年龄
 		// 访问一个对象的属性，通常包括两种操作，一种是读数据，一种是改数据

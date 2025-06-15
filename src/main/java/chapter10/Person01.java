@@ -22,11 +22,11 @@ package chapter10;
 // 不再暴露复杂的数据，封装起来
 // 对外只提供简单的操作入口
 // 优点：第一数据安全了，第二调用者也方便了
-public class Person {
+public class Person01 {
 
 	// private表示私有的，被这个关键字修饰之后，该数据只能在本类中访问
 	// 出了这个类，age属性就无法访问了，私有的
-	private int age;
+	int age;
 
 	// 对外提供简单的访问入口
 	// 外部程序只能通过调用以下的代码来完成访问
@@ -56,19 +56,4 @@ public class Person {
 			大家尽量按照java规范中要求的格式提供set和get方法
 			如果不按照这个规范格式来，那么你的程序将不是一个通用的程序
 	 */
-
-	// get方法
-	public int getAge(){
-		return age;
-	}
-
-	// set方法
-	public void setAge(int newAge){
-		// 能不能在这个位置上设置关卡！！！！
-		if (newAge < 0 || newAge > 150){
-			System.out.println("对不起，年龄值不合法，请重新赋值！");
-			return; // 直接终止程序的执行
-		}
-		age = newAge;
-	}
 }

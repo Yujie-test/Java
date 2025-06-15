@@ -20,6 +20,21 @@ public class PersonTest02 {
 
 		// 读age
 		System.out.println(p.age);*/
+
+		// 读调用getAge()方法
+		//int age = p.getAge();
+		//System.out.println(age); //0
+		// 以上代码联合
+		System.out.println(p.getAge()); //0
+
+		// 改调用setAge()方法
+		p.setAge(20);
+		System.out.println(p.getAge()); //20
+
+		// 结果还是没控制住
+		p.setAge(-100);
+		//System.out.println(p.getAge()); //-100
+		System.out.println(p.getAge()); //20
 	}
 }
 
