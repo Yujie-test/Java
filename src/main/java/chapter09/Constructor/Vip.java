@@ -35,6 +35,18 @@ public class Vip {
 		// 给实例变量赋值【初始化实例变量，初始化属性】
 		no = huiYuanHao;
 		name = xingMing;
+		birth = shengRi;
+		// 实际上这里有一行默认的代码
+		// sex = false;
+	}
+
+	// 有参数构造方法
+	public Vip(long huiYuanHao, String xingMing, String shengRi, boolean xingBie) {
+		// 给实例变量赋值【初始化实例变量，初始化属性】
+		no = huiYuanHao;
+		name = xingMing;
+		birth = shengRi;
+		sex = xingBie;
 	}
 }
 
