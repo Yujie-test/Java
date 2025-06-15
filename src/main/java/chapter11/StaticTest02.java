@@ -2,12 +2,24 @@ package chapter11;
 
 /*
 	什么时候变量声明为实例的，什么时候声明为静态的
+		如果这个类型的所有对象的某个属性值都是一样的
+		不建议定义为实例变量，浪费内存空间。减一定义为类级别特征，定义为静态变量，
+		在方法区中只保留一份，节省内存开销。
+
+	一个对象一份的是实例变量，所有对象一份的是静态变量
 */
 
-public class StaticTest02 {
-
+/*public class StaticTest02 {
 	public static void main(String[] args) {
+		Chinese c1 = new Chinese("123123123123", "zhangsan", "China");
+		System.out.println(c1.idCard);
+		System.out.println(c1.name);
+		System.out.println(c1.country);
 
+		Chinese c2 = new Chinese("789789789789", "lisi", "China");
+		System.out.println(c2.idCard);
+		System.out.println(c2.name);
+		System.out.println(c2.country);
 	}
 }
 
@@ -29,5 +41,62 @@ class Chinese{
 	// 假设声明为静态变量，内存图又是怎样的
 	String country;
 
+	// 无参数
+	public Chinese(){
+	}
+
+	// 有参数
+	public Chinese(String s1, String s2, String s3){
+		idCard = s1;
+		name = s2;
+		country = s3;
+	}
+}*/
+
+public class StaticTest02 {
+	public static void main(String[] args) {
+
+		// 访问中国人的国籍
+		// 静态变量应该使用“类名.”的方式访问
+		Chinese c1 = new Chinese("123123123123", "zhangsan");
+		System.out.println(c1.idCard);
+		System.out.println(c1.name);
+		System.out.println(Chinese.country);
+
+		Chinese c2 = new Chinese("789789789789", "lisi");
+		System.out.println(c2.idCard);
+		System.out.println(c2.name);
+		System.out.println(Chinese.country);
+
+		// idCard是实例变量，必须先new对象，通过“引用.”访问
+		// 错误：无法从静态上下文中引用非静态 变量 idCard
+		//System.out.println(Chinese.idCard);
+	}
+}
+
+class Chinese{
+	// 身份证号
+	// 每个人的身份证号不同，所以身份证号应该是实例变量，一个对象一份
+	String idCard;
+
+	// 姓名
+	// 姓名也是一个人一个姓名，姓名也应该是实例变量
+	String name;
+
+	// 国籍
+	// 加static的变量叫做静态变量
+	// 静态变量在类加载时初始化，不需要new对象，静态变量的空间就开出来了
+	// 静态变量存储在方法区
+	static String country = "China";
+
+	// 无参数
+	public Chinese(){
+	}
+
+	// 有参数
+	public Chinese(String s1, String s2){
+		idCard = s1;
+		name = s2;
+	}
 }
 
