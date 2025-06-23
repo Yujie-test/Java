@@ -21,7 +21,6 @@ package chapter11;
 		（在哪年哪月哪日几时几分几秒，哪个类加载到JVM当中了）
 		思考：这些记录日志的代码写到哪里呢？
 			写到静态代码块中
-
 */
 
 public class StaticTest06 {
