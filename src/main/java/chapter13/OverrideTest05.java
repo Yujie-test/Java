@@ -1,106 +1,57 @@
 package chapter13;
 
 /*
-	关于Object类中的toString()方法
-		1、toString()方法的作用是什么
-			作用：将“Java对象”转换成字符串的形式
+	1、方法覆盖需要和多态机制联合起来使用才有意义
+		Animal a = new Cat();
+		a.move();
+		要的是什么效果？
+			编译的时候move()方法是Animal的
+			运行的时候自动调用到子类重写的move()方法上
 
-		2、Object类中toString()方法的默认实现是什么
-			public String toString() {
-				return getClass().getName() + "@" + Integer.toHexString(hashCode());
-			}
-			toString：方法名的意思是转换成String
-			含义：调用一个java对象的toString()方法就可以将该java对象转换成字符串的表示形式
+		假设没有多态机制，只有方法覆盖，有意义吗？
+			没有多态机制的话，方法覆盖可有可无。
 
-		3、那么toString()方法给的默认实现够用吗
+			没有多态机制，方法覆盖也可以没有，如果父类的方法无法满足子类业务需求的时候，
+			子类完全可以定义一个全新的方法
+
+		方法覆盖和多态不能分开
+
+	2、静态方法存在方法覆盖吗？
+		多态自然就和对象有关系
+		而静态方法的执行不需要对象。
+		所以，一般情况下，我们会说静态方法“不存在”方法覆盖
+		不探讨静态方法的覆盖
 */
 
 public class OverrideTest05 {
 	public static void main(String[] args) {
-		// 创建一个日期对象
-		MyDate t1 = new MyDate();
+		// 静态方法可以用"引用."来调用吗
+		// 虽然使用"引用."来调用，但是和对象无关
+		Animal2 a = new Cat2();
+		// 静态方法和对象无关
+		// 虽然使用"引用."来调用但是实际运行的时候还是：Animal2.doSome()
+		a.doSome();
 
-		// 调用toString()方法（将对象转换成字符串形式）
-		// 对这个输出不满意，希望输出xxxx年xx月xx日，这种格式
-		// 重写MyDate的toString()方法之前的结果
-		//System.out.println(t1.toString()); //chapter13.MyDate@1540e19d
+		Cat2 c = new Cat2();
+		c.doSome();
 
-		// 重写MyDate的toString()方法之后的结果
-		System.out.println(t1.toString()); //1970年1月1日
-
-		// 大家是否还记得：当输出一个引用的时候，println方法会自动调用引用的toString()方法
-		System.out.println(t1);
-
-		MyDate t2 = new MyDate(2008, 8, 8);
-		System.out.println(t2.toString());
-		System.out.println(t2);
-
-		// 创建学生对象
-		Student s1 = new Student(11111, "Jack");
-		// 重写toString()方法之前
-		//System.out.println(s1); //chapter13.Student@1540e19d
-		// 重写toString()方法之后
-		// 输出一个学生对象的时候，可能更愿意看到学生的信息，不愿意看到对象的内存地址
-		System.out.println(s1);
+		Animal2.doSome();
+		Cat2.doSome();
 	}
 }
 
-// 日期类
-class MyDate{
-	private int year;
-	private int month;
-	private int day;
-
-	public MyDate(){
-		this(1970, 1, 1);
-	}
-	public MyDate(int year, int month, int day){
-		this.year = year;
-		this.month = month;
-		this.day = day;
-	}
-
-	public int getYear() {
-		return year;
-	}
-	public int getMonth() {
-		return month;
-	}
-	public int getDay() {
-		return day;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public void setMonth(int month) {
-		this.month = month;
-	}
-	public void setDay(int day) {
-		this.day = day;
-	}
-
-	@Override
-	public String toString() {
-		return this.year + "年" + this.month + "月" + this.day + "日";
-	}
-
-	// 从Object类中继承过来的那个toString()方法已经无法满足我的业务需求了
-	// 我在子类MyDate中有必要对父类的toString()方法进行覆盖/重写
-	// 我的业务要求是：调用toString()方法进行字符串转换的时候
-	// 希望转换的结果是：xxxx年xx月xx日，这种格式
-}
-
-class Student{
-	int no;
-	String name;
-	public Student(int no, String name){
-		this.no = no;
-		this.name = name;
-	}
-
-	// 重写 方法覆盖
-	@Override
-	public String toString(){
-		return "No: " + this.no + ", Name: " + this.name;
+class Animal2{
+	// 父类的静态方法
+	public static void doSome(){
+		System.out.println("Animal's doSome method execute!");
 	}
 }
+
+class Cat2 extends Animal2{
+	// 尝试在子类当中对父类的静态方法进行重写
+	public static void doSome(){
+		System.out.println("Cat's doSome method execute!");
+	}
+}
+
+
