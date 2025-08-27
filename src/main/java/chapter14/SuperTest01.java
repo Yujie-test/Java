@@ -1,59 +1,76 @@
 package chapter14;
 
 /*
-	私有方法不能覆盖
+	1、super是一个关键字，全部小写
+	2、super和this对比着学习
+		this：
+			this能出现在实例方法和构造方法中
+			this的语法是：“this.”、“this()”
+			this不能使用在静态方法中
+			this. 大部分情况下是可以省略的，在区分局部变量和实例变量的时候不能省略
+			this() 只能出现在构造方法第一行，通过当前的构造方法去调用“本类”中其他的构造方法，目的是：代码复用
+
+		super：
+			super能出现在实例方法和构造方法中
+			super的语法是：“super.”、“super()”
+			super不能使用在静态方法中
+			super. 大部分情况下是可以省略的，在区分局部变量和实例变量的时候不能省略
+			super() 只能出现在构造方法第一行，通过当前的构造方法去调用“父类”中其他的构造方法，目的是：创建子类对象的时候，先出实话父类型的特征
+
+	3、super()
+		表示通过子类的构造方法调用父类的构造方法。
+		模拟现实世界中的这种场景：要想有儿子，需要现先有父亲
+
+	4、重要的结论：
+		当一个构造方法第一行：
+			既没有this()又没有super()，默认会有一个super()；
+			表示通过当前子类的构造方法调用父类的无参数构造方法
+			所以必须保证父类的无参数构造方法是存在的
+
+	5、this()和super()不能共存，它们都只能出现在构造方法的第一行
+
+	6、无论是怎么样折腾，父类的构造方法一定会执行
 */
 
 public class SuperTest01 {
 	public static void main(String[] args) {
-		// 一般重写的时候都是复制粘贴，不要改
+		// 创建子类对象
+		/*
+			A类的无参数构造方法
+			B类的无参数构造方法
+		*/
+		new B();
 	}
 }
 
-// 在外部类中无法访问私有的
-class Animal3{
-	/*public double sum(int a, int b){
-		return a + b;
-	}*/b
-
-	/*public int sum(int a, int b){
-		return a + b;
-	}*/
-}
-
-class Cat3 extends Animal3{
-	// 重写
-	// 错误：返回类型int与double不兼容
-	/*
-	public double sum(int a, int b){
-		return a + b;
+class A{
+	// 建议手动的将一个类的无参数构造方法写出来
+	public A(){
+		System.out.println("A类的无参数构造方法");
 	}
-	*/
 
-	// 错误：返回类型double与int不兼容
-	/*public double sum(int a, int b){
-		return a + b;
-	}*/
-}
-
-// 父类
-class MyClass{
-	public Animal3 getAnimal(){
-		return null;
+	// 一个类如果没有手动提供任何构造方法，系统会默认提供一个无参数构造方法
+	// 一个类如果手动提供了一个构造方法，那么无参数构造系统将不再提供
+	public A(int i){
+		System.out.println("A类的有参数构造方法");
 	}
 }
 
-// 子类
-class MyClass1 extends MyClass{
-	// 重写父类的方法
-	// 重写的时候返回值类型由Animal变成了Cat，变小了（可以，Java中允许）
-	/*public Cat3 getAnimal(){
-		return null;
+class B extends A{
+	/*public B(){
+		System.out.println("B类的无参数构造方法");
 	}*/
 
-	// 重写的时候返回值类型由Animal变成了Object，变大了（不可以，Java中不允许）
-	// 错误：返回类型java.lang.Object与chapter13.Animal3不兼容
-	/*public Object getAnimal(){
-		return null;
-	}*/
+	public B(){
+		this("zhangsan");
+		// 调用父类中有参数的构造方法
+		//super(100);
+		System.out.println("B类的无参数构造方法");
+	}
+
+	public B(String name){
+		// 调用父类中有参数的构造方法
+		System.out.println("B类的有参数构造方法（String）");
+	}
 }
+
