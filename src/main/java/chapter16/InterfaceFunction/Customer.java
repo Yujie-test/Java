@@ -28,8 +28,18 @@ public class Customer {
     public FoodMenu getFm() {
         return fm;
     }
-    public void setFm(FoodMe nu fm) {
+    public void setFm(FoodMenu fm) {
         this.fm = fm;
+    }
+
+    // 提供一个点菜的方法
+    public void order(){
+        // 先拿到菜单才能点菜
+        // 调用get方法拿菜单
+        //FoodMenu fm = this.getFm();
+        // 也可以不调用get方法，因为在本类中私有的属性是可以访问的
+        fm.ChongQinChicken();
+        fm.BeefBurger();
     }
 }
 
