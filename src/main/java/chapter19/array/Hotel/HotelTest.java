@@ -16,9 +16,16 @@ package chapter19.array.Hotel;
 
 public class HotelTest {
     public static void main(String[] args) {
-        Room[][] hotel = {
+        // 创建酒店对象
+        Hotel hotel1 = new Hotel();
+        // 打印房间状态
+        hotel1.printHotel();
 
-        };
+        Hotel hotel2 = new Hotel(2, 3);
+        hotel2.printHotel();
+
+
+
 
     }
 }
