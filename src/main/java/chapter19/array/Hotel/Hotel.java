@@ -54,4 +54,37 @@ public class Hotel {
             System.out.println();
         }
     }
+
+    /**
+     * 订房方法
+     * @param roomNo：调用此方法时需要传递一个房间编号过来。这个房间编号是前台小姐姐输入的
+     */
+    public void order(int roomNo){
+        // 订房最主要的是将房间对象的status修改为false
+        // 假设房间编号是207（下标是hotel[1][6]）
+        // 通过房间编号演算出下标。获取房间编号
+        int floor = roomNo / 100 - 1;
+        int no = roomNo % 100 - 1;
+        if (!hotel[floor][no].getStatus()){
+            System.out.println("Order failed, room " + roomNo + " is occupied!");
+            return;
+        }
+        hotel[roomNo / 100 - 1][roomNo % 100 - 1].setStatus(false);
+        System.out.println("Order room " + roomNo + " succeed!");
+    }
+
+    /**
+     * 退房方法
+     * @param roomNo
+     */
+    public void exit(int roomNo){
+        int floor = roomNo / 100 - 1;
+        int no = roomNo % 100 - 1;
+        if (hotel[floor][no].getStatus()){
+            System.out.println("Exit failed, room " + roomNo + " is empty!");
+            return;
+        }
+        hotel[roomNo / 100 - 1][roomNo % 100 - 1].setStatus(true);
+        System.out.println("Exit Room " + roomNo + " succeed!");
+    }
 }
