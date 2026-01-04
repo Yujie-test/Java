@@ -49,6 +49,7 @@ package chapter19.array;public class BubbleSort {
         }
 
         int count = 0;
+        int count2 = 0;
         int[] arr2 = {9, 8, 10, 7, 6, 0, 11};
         // 7条数据循环6次（冒泡排序的外层循环采用这种方式）
         for (int i = arr2.length-1; i > 0; i--) {
@@ -58,6 +59,7 @@ package chapter19.array;public class BubbleSort {
                 if (arr2[j] > arr2[j+1]){
                     // 交换位置
                     // arr2[j]和arr2[j+1]交换位置
+                    count2++;
                     int tmp = arr2[j];
                     arr2[j] = arr2[j+1];
                     arr2[j+1] = tmp;
@@ -70,7 +72,8 @@ package chapter19.array;public class BubbleSort {
             System.out.print(arr2[j] + " ");
         }
         System.out.println();
-        System.out.println("比较次数：" + count);
+        System.out.println("比较次数：" + count); // 21
+        System.out.println("交换位置次数：" + count2); // 13
 
     }
 }
