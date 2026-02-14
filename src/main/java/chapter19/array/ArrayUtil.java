@@ -34,7 +34,7 @@ public class ArrayUtil {
         // 找出arr这个数组中222所在的下标
         // 调用方法
         int key = binarySearch2(a, 222);
-        System.out.println(key);
+        System.out.println("该元素的下标是：" + key);
     }
 
     /**
@@ -51,14 +51,21 @@ public class ArrayUtil {
         int end = arr.length - 1;
         // 中间元素下标
         int pointer;
+
+        // 开始元素的下标只要在结束元素下标的左边，就有机会继续循环
         while (start <= end) {
             pointer = (start + end) / 2;
             if (arr[pointer] == key){
                 return pointer;
             } else if (arr[pointer] > key) {
-                end = pointer - 1;
+                // 目标在“中间”的左边
+                // 修改结束元素的下标
+                end = pointer - 1; // 一直减
             } else {
-                start = pointer + 1;
+                // arr[pointer] < key
+                // 目标在“中间”的右边
+                // 开始元素下标需要发生变化（开始元素的下标需要重新赋值）
+                start = pointer + 1; // 一直增
             }
         }
         return -1;
