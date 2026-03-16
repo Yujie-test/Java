@@ -89,9 +89,78 @@ public class StringTest05 {
         String param = "name=zhangsan&age=18&pw=123456";
         String[] params = param.split("&");
         for (int i = 0; i < params.length; i++) {
-            System.out.print(params[i] + " "); //name=zhangsan age=18 pw=123456
+            String[] elements = params[i].split("=");
+            //System.out.print(params[i] + " "); //name=zhangsan age=18 pw=123456
             // 可以据徐向下拆分，可以根据“=”进行拆分
+            for (int j = 0; j < elements.length; j++) {
+                System.out.print(elements[j] + " ");
+            }
+            System.out.println();
+        }
+        //System.out.println();
+
+        // 14（掌握）. boolean char.startsWith(String prefix)
+        // 判断当前字符串是否以某个字符串开始
+        System.out.println("test.txt".startsWith("test")); //true
+        System.out.println("test.txt".startsWith("txt")); //false
+
+        // 15（掌握）. String char.substring(int beginIndex)
+        // 截取字符串
+        System.out.println("http://www.baidu.com".substring(7)); //www.baidu.com
+
+        // 16（掌握）. String char.substring(int beginIndex, int endIndex)
+        // beginIndex起始位置（包括）
+        // endIndex结束位置（不包括）
+        System.out.println("http://www.baidu.com".substring(7, 10)); //www
+
+        // 17（掌握）. char[] char.toCharArray()
+        // 将字符串转换成char数组
+        char[] chars = "abc".toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            System.out.print(chars[i] + " ");
         }
         System.out.println();
+
+        // 18（掌握）. String char.toLowerCase()
+        // 转换为小写
+        System.out.println("TEST".toLowerCase()); //test
+
+        // 19（掌握）. String char.toUpperCase()
+        // 转换为大写
+        System.out.println("test".toUpperCase()); //TEST
+
+        // 20（掌握）. String char.trim()
+        // 去除字符串前后空白
+        System.out.println("    hello   world!   ".trim()); //hello   world!
+
+        // 21（掌握）. String类中只有一个方法是静态的，不需要new对象
+        // 这个方法叫做valueOf
+        // 作用：将”非字符串“转换成”字符串“
+        System.out.println(String.valueOf(true)); //true
+        System.out.println(String.valueOf(100)); //100
+
+        // 这个静态的valueOf()方法，参数是一个对象的时候，会自动调用该对象的toString()方法吗？会
+        // 没有重写toString()方法之前是对象内存地址
+        //System.out.println(String.valueOf(new Customer())); //chapter20.string.Customer@14ae5a5
+        System.out.println(String.valueOf(new Customer())); //I'm a VIP customer
+
+        // 我们是不是可以研究一下println()方法的源码了
+        System.out.println(100);
+        System.out.println(true);
+        System.out.println(3.14);
+
+        Object obj = new Object();
+        // 通过源代码可以看出：为什么输出一个引用的时候，会调用toString()方法
+        // 本质上System.out.println()这个方法在输出任何数据的时候都是先转换成字符串，再输出
+        System.out.println(obj);
+        System.out.println(new Customer());
+    }
+}
+
+class Customer{
+    // 重写toString()方法
+    @Override
+    public String toString() {
+        return "I'm a VIP customer";
     }
 }
