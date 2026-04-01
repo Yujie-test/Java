@@ -8,6 +8,13 @@ package chapter21.exception;
     处理异常的第二种方式：
         使用try、catch语句对异常进行捕捉，这个一场不会上报，自己把这个事处理了
         异常抛到此为止，不再上抛了。
+
+    注意：只要异常没有捕捉，采用上报方式，此方法的后续代码不会执行
+    try、catch捕捉异常之后，后续代码可以执行
+
+    在以后的开发中，处理编译时异常，应该上报还是捕捉呢，怎么选？
+        如果希望调用者来处理，后续代码可以执行
+        其他情况采用捕捉的方式
 */
 
 import java.io.FileInputStream;
@@ -38,16 +45,24 @@ public class ExceptionTest06 {
         try {
             // try尝试
             m1();
-        } catch (FileNotFoundException e) {
+            // 以上代码出现异常，直接进入catch语句中执行
+            System.out.println("Hello World!");
+        } catch (FileNotFoundException e) { // catch后面的好像一个方法的形参
+            // 这个分支中可以使用e引用，e引用保存的内存地址是那个new出来的异常对象的内存地址
             // catch是捕捉异常后走的分支
+            // 在catch分支中处理异常
             System.out.println("File not found!");
+            System.out.println(e); //java.io.FileNotFoundException: D:\Git\Java\src\test\Metho (系统找不到指定的文件。)
         }
+
+        // try、catch把异常抓住之后，这里的代码会继续执行
         System.out.println("main end!");
     }
 
     private static void m1() throws FileNotFoundException{
         System.out.println("m1 begin!");
         m2();
+        // 以上如果出现异常，这里是无法执行的！
         System.out.println("m1 end!");
     }
 
@@ -64,6 +79,7 @@ public class ExceptionTest06 {
         //m3();
 
         m3();
+        // 以上如果出现异常，这里是无法执行的！
         System.out.println("m2 end!");
     }
 
@@ -83,6 +99,9 @@ public class ExceptionTest06 {
         //new FileInputStream("D:\\Git\\Java\\src\\test\\Method.txt");
 
         // 我们采用第一种处理方式：在方法声明的位置上使用throws继续上抛
-        new FileInputStream("D:\\Git\\Java\\src\\test\\Method.txt");
+        // 一个方法体当中的代码出现异常之后，如果上报的话，此方法结束
+        new FileInputStream("D:\\Git\\Java\\src\\test\\Metho");
+
+        System.out.println("如果以上代码出异常，这里不会执行！");
     }
 }
