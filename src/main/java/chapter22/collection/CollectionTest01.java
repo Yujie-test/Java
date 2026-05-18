@@ -10,7 +10,13 @@ package chapter22.collection;
 
     2、Collection中的常用方法：
         boolean add(Object e) 向集合中添加元素
- */
+        int size() 获取集合中元素的个数
+        void clear() 清空集合
+        boolean contains(Object e) 判断当前集合中是否包含元素a，包含返回true，不包含返回false
+        boolean remove(Object e) 删除集合中某个元素
+        boolean isEmpty() 判断该集合中元素个数是否为0
+        Object[] toArray() 调用这个方法可以把集合转换成数组【作为了解，使用不多】
+*/
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +33,52 @@ public class CollectionTest01 {
         c.add(new Object());
         c.add(new Student());
         c.add(true); // 自动装箱
+
+        // 获取集合中元素的个数
+        System.out.println(c.size()); // 5
+
+        // 清空集合
+        c.clear();
+        System.out.println(c.size());
+
+        // 再向集合中添加元素
+        c.add("Hello");
+        c.add("world");
+        c.add("lock");
+        c.add(1);
+
+        // 判断集合中是否包含“lock”
+        boolean flag = c.contains("lock");
+        System.out.println(flag); //true
+        boolean flag2 = c.contains("lock2");
+        System.out.println(flag2); //false
+        System.out.println(c.contains(1)); //true
+
+        System.out.println(c.size());
+
+        // 删除集合中某个元素
+        c.remove(1);
+        System.out.println(c.size());
+
+        // 判断集合是否为空（集合中是否存在元素）
+        System.out.println(c.isEmpty()); //false
+        // 清空
+        c.clear();
+        System.out.println(c.isEmpty()); //true（true表示集合中没有元素了！）
+
+        c.add("abc");
+        c.add("def");
+        c.add(100);
+        c.add("Hello");
+        c.add(new Student());
+
+        // 转换成数组（了解，使用不多）
+        Object[] objs = c.toArray();
+        for (int i = 0; i < objs.length; i++) {
+            // 遍历数组
+            Object o = objs[i];
+            System.out.println(o);
+        }
     }
 }
 
