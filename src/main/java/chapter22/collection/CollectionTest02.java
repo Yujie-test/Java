@@ -32,6 +32,11 @@ public class CollectionTest02 {
             System.out.println(iter.next());
         }
 
+        // 一直取，不判断，会出现异常：java.util.NoSuchElementException
+        /*while (true) {
+            System.out.println(iter.next());
+        }*/
+
         /*boolean hasNext = iter.hasNext();
         System.out.println(hasNext);
         if (hasNext){
